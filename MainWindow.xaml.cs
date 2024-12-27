@@ -47,7 +47,14 @@ namespace Space_Remover
 
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Maximized;
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
         }
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
