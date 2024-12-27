@@ -1,9 +1,9 @@
-﻿<Window x:Class="WPF.Template.ErrorWindow"
+﻿<Window x:Class="Space_Remover.ErrorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF.Template"
+        xmlns:local="clr-namespace:Space_Remover"
         mc:Ignorable="d"
         KeyDown="CloseWithEnterKey"
         Title="Error"
@@ -61,7 +61,7 @@
                            Visibility="Hidden"
                            TextAlignment="Center"> 
                        A newer version is available! Please download it from 
-                    <Hyperlink NavigateUri="https://github.com/Jestzer/WPF.Template/releases/latest"
+                    <Hyperlink NavigateUri="https://github.com/Jestzer/Space_Remover/releases/latest"
                                RequestNavigate="Hyperlink_RequestNavigate">
                         GitHub
                     </Hyperlink>.

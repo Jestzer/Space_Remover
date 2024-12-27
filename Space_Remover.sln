@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.Template", "WPF.Template.csproj", "{9017AD91-9710-420E-869B-6436A3134499}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space_Remover", "Space_Remover.csproj", "{9017AD91-9710-420E-869B-6436A3134499}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

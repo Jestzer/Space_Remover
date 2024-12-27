@@ -1,18 +1,21 @@
 ﻿using System.Media;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
-
-namespace WPF.Template
+namespace Space_Remover
 {
     public partial class MainWindow : Window
     {
+        [GeneratedRegex(@"([.!?,;:\-&])\s{2,}")]
+        private static partial Regex SpacesRegex();
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this; // For gathering the version number.
+            DataContext = this; // For gathering the version number and clipboard data.
         }
 
         public static string PackageVersion
@@ -57,13 +60,13 @@ namespace WPF.Template
             Version currentVersion = new(PackageVersion);
 
             // GitHub API URL for the latest release.
-            string latestReleaseUrl = "https://api.github.com/repos/Jestzer/WPF.Template/releases/latest";
+            string latestReleaseUrl = "https://api.github.com/repos/Jestzer/Space_Remover/releases/latest";
 
             // Use HttpClient to fetch the latest release data.
             using (HttpClient client = new())
             {
                 // GitHub API requires a user-agent. I'm adding the extra headers to reduce HTTP error 403s.
-                client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("WPF.Template", PackageVersion));
+                client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("Space_Remover", PackageVersion));
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 try
@@ -113,7 +116,7 @@ namespace WPF.Template
                     }
                     catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        ShowUpdateWindow("HTTP error 404: when checking for updates, we were told the page to check for updates doesn't exist.", "Check for updates");
+                        ShowUpdateWindow("HTTP error 404: when checking for updates, we were told the page to check for updates doesn't exist. Check GitHub manually: https://github.com/Jestzer/Space_Remover", "Check for updates");
                     }
                     catch (HttpRequestException ex)
                     {
@@ -146,14 +149,51 @@ namespace WPF.Template
             errorWindow.ShowDialog();
         }
 
-        private void MoneyButton_Click(object sender, RoutedEventArgs e)
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowErrorWindow("Money texblock parsing error.");
+            if (FixedTextBox != null)
+            {;
+                int attempts = 0;
+                bool success = false;
+                string errorMessage = string.Empty;
+
+                while (!success && attempts < 5)
+                {
+                    try
+                    {
+                        Clipboard.SetText(FixedTextBox.Text);
+                        success = true;
+                    }
+                    catch (System.Runtime.InteropServices.ExternalException ex)
+                    {
+                        attempts++;
+                        errorMessage = ex.Message;
+                        Thread.Sleep(100); // In milliseconds.
+                    }
+                }
+
+                if (!success)
+                {
+                    if (errorMessage == "OpenClipboard Failed (0x800401D0 (CLIPBRD_E_CANT_OPEN))")
+                    {
+                        errorMessage = "Copying to the clipboard failed. Try copying the text like you normally would.";
+                    }
+                    ShowErrorWindow(errorMessage);
+                }
+            }
         }
 
-        private void ProfitButton_Click(object sender, RoutedEventArgs e)
+        private void PasteButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowErrorWindow("Profit texblock parsing error.");
+            if (Clipboard.ContainsText())
+            {
+                OriginalTextBox.Text = Clipboard.GetText();
+            }
+        }
+
+        private void ConvertButton_Click(object sender, RoutedEventArgs e)
+        {
+            FixedTextBox.Text = SpacesRegex().Replace(OriginalTextBox.Text, "$1 ");
         }
     }
 }

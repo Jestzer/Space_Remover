@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WPF.Template
+namespace Space_Remover
 {
     public partial class App : Application
     {

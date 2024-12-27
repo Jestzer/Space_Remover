@@ -3,7 +3,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 
 
-namespace WPF.Template
+namespace Space_Remover
 {
     public partial class ErrorWindow : Window
     {
