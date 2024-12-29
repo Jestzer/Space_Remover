@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 
 namespace Space_Remover
@@ -32,17 +31,24 @@ namespace Space_Remover
             }
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            // Open the URL in the default browser.
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = e.Uri.AbsoluteUri,
-                UseShellExecute = true
-            });
+            var url = "https://github.com/Jestzer/options.file.checker/releases/latest";
 
-            // Prevent the navigation from happening within the app.
-            e.Handled = true;
+            try
+            {
+                var psi = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true // Necessary to use the system's default web browser.
+                };
+
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+               URLTextBlock.Text = $"Error opening URL: {ex.Message}";
+            }
         }
     }
 }

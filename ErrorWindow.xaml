@@ -56,15 +56,11 @@
                 <TextBlock x:Name="URLTextBlock"
                            TextWrapping="Wrap"
                            Foreground="White"
-                           Margin="32,31,45,32"
+                           Margin="42,75,35,-12"
                            FontSize="14"
                            Visibility="Hidden"
                            TextAlignment="Center"> 
-                       A newer version is available! Please download it from 
-                    <Hyperlink NavigateUri="https://github.com/Jestzer/Space_Remover/releases/latest"
-                               RequestNavigate="Hyperlink_RequestNavigate">
-                        GitHub
-                    </Hyperlink>.
+                       A newer version is available! Please download it using the Download button below.
                 </TextBlock>
                 <Button x:Name="OKButton"
                         Content="OK"
@@ -96,6 +92,42 @@
                                     <Setter TargetName="border"
                                             Property="Background"
                                             Value="#FFCECECE"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="DownloadButton"
+                    Content="Download"
+                    Visibility="Hidden"
+                    HorizontalAlignment="Center"
+                    Margin="0,160,0,0"
+                    VerticalAlignment="Top"
+                    Click="DownloadButton_Click"
+                    Width="152"
+                    Foreground="White"
+                    Height="42">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border"
+                                Background="#FF464646"
+                                BorderBrush="#FF1E699B"
+                                BorderThickness="2">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                    Value="True">
+                                    <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="Gray"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                                    Value="True">
+                                    <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#FFCECECE"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
