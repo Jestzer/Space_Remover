@@ -59,8 +59,24 @@
                 <TextBox x:Name="FixedTextBox" Text="Fixed text will output here." Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Foreground="White" Background="#FF464646" BorderBrush="DarkGray" BorderThickness="2" Margin="10" />
 
                 <!-- Paste/Convert/Copy Buttons -->
-                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10,0,10" Width="751">
-                    <Button x:Name="PasteButton" Content="Paste" Click="PasteButton_Click" Width="75" Foreground="White" Margin="5">
+                <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,10,0,10" Width="947">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <!-- Left space -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- Paste Button -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Center space -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- Convert Button -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Right space -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- Copy Button -->
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Paste Button -->
+                    <Button x:Name="PasteButton" Content="Paste" Click="PasteButton_Click" Width="75" Foreground="White" Margin="191,5,50,5">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="#FF464646" BorderBrush="#FF1E699B" BorderThickness="2">
@@ -77,7 +93,9 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button x:Name="ConvertButton" Content="Convert" Click="ConvertButton_Click" Width="75" Foreground="White" Margin="5">
+
+                    <!-- Convert Button -->
+                    <Button x:Name="ConvertButton" Content="Convert" Click="ConvertButton_Click" Width="75" Foreground="White" Margin="120,5,120,5" Grid.Column="2">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="#FF464646" BorderBrush="#FF1E699B" BorderThickness="2">
@@ -94,7 +112,9 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button x:Name="CopyButton" Content="Copy" Click="CopyButton_Click" Width="75" Foreground="White" Margin="5">
+
+                    <!-- Copy Button -->
+                    <Button x:Name="CopyButton" Content="Copy" Click="CopyButton_Click" Width="75" Foreground="White" Margin="38,5,203,5" Grid.Column="4">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="#FF464646" BorderBrush="#FF1E699B" BorderThickness="2">
@@ -111,7 +131,8 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                </StackPanel>
+                </Grid>
+
 
                 <!-- Version Info and CheckForUpdateButton -->
                 <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Left" Margin="10,10,0,10">
