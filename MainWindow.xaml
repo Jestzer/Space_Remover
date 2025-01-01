@@ -9,7 +9,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        SizeChanged="Window_SizeChanged">
     <Border BorderBrush="Gray" BorderThickness="1">
         <Grid>
             <!-- Grid rows: Title bar and main content -->

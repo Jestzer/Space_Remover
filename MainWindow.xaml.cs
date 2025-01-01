@@ -56,6 +56,20 @@ namespace Space_Remover
                 WindowState = WindowState.Maximized;
             }
         }
+
+        // Changing the window border size when maximized so that it doesn't go past the screen borders.
+        public void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                BorderThickness = new Thickness(5);
+            }
+            else
+            {
+                BorderThickness = new Thickness(0);
+            }
+        }
+
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
